@@ -7,7 +7,7 @@ RUN apt-get install -y npm
 RUN mkdir /app
 ADD cartapi /app/
 
-WORKDIR /app/cartapi
+WORKDIR /app
 RUN npm install
 
 ENTRYPOINT [ "node" ]
