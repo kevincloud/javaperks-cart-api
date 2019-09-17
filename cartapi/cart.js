@@ -6,6 +6,11 @@ module.exports = (ddb, table, router = new Router()) => {
         var productid = req.body.productId;
         var quantity = parseInt(req.body.quantity);
         var datetime = new Date().getTime().toString();
+
+        console.log("Add to cart data:");
+        console.log(" ... sessionid: " + sessionid);
+        console.log(" ... productid: " + productid);
+        console.log(" ... quantity: " + quantity);
     
         ddb.query({
             TableName: table,
