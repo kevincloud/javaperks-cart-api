@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: /app
+    working_directory: /javaperks-cart-api
     docker:
       - image: docker:19.03.2-git
     steps:
@@ -11,25 +11,25 @@ jobs:
           keys:
             - v1-{{ .Branch }}
           paths:
-            - /caches/app.tar
+            - /caches/javaperks-cart-api.tar
       - run:
           name: Load Docker image layer cache
           command: |
             set +o pipefail
-            docker load -i /caches/app.tar | true
+            docker load -i /caches/javaperks-cart-api.tar | true
       - run:
           name: Build application Docker image
           command: |
-            docker build --cache-from=app -t jubican/javaperks-cart-api:latest .
+            docker build --cache-from=javaperks-cart-api -t jubican/javaperks-cart-api:latest .
       - run:
           name: Save Docker image layer cache
           command: |
             mkdir -p /caches
-            docker save -o /caches/app.tar app
+            docker save -o /caches/javaperks-cart-api.tar javaperks-cart-api
       - save_cache:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
-            - /caches/app.tar
+            - /caches/javaperks-cart-api.tar
       - deploy:
           name: Push application Docker image
           command: |
