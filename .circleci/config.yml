@@ -35,5 +35,5 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-              docker push javaperks-cart-api:latest
+              docker push jubican/$IMAGE_NAME:latest
             fi
