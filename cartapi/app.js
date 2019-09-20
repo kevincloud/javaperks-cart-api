@@ -9,7 +9,7 @@ const region = process.env.REGION;
 aws.config.update({region: region});
 
 const ddb = new aws.DynamoDB.DocumentClient();
-const table = 'customer-cart';
+const table = process.env.DDB_TABLE_NAME;
 
 const cart = require('./cart');
 const cartitem = require('./cartitem');
