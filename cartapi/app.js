@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 const aws = require('aws-sdk');
-const port = process.env.PORT || 5823;
+const port = process.env.PORT || 80;
 const bodyParser = require('body-parser');
 const region = process.env.REGION;
 
