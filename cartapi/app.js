@@ -2,9 +2,11 @@ const express = require('express');
 const app = express();
 
 const aws = require('aws-sdk');
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 5821;
+const localhost = process.env.LOCALHOST_ONLY || '';
 const bodyParser = require('body-parser');
 const region = process.env.REGION;
+const ipaddr = (localhost == '' ? '0.0.0.0' : '127.0.0.1')
 
 aws.config.update({region: region});
 
@@ -21,6 +23,6 @@ app.use(cart(ddb, table));
 app.use(cartitem(ddb, table));
 app.use(health());
 
-app.listen(port, () =>{
+app.listen(port, ipaddr, () =>{
     console.log('Server listening on port ' + port);
 });
